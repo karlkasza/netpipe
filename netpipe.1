@@ -1,0 +1,89 @@
+.\" Documentation for netpipe, version 0.1
+
+.TH netpipe 1 "19th January 2004." Netpipe "Netpipe manual"
+
+.SH NAME
+netpipe \- Universal TCP forwarder
+
+.SH DESCRIPTION
+Netpipe is what it is called: a program to pipe network traffic.
+It can do simple (old-school) port forwarding, or do some other
+tricky things. Like reverse port forwarding, which will do the following:
+Let's say there are two hosts: A and B, B is behind a firewall, so B
+can start a  connection to A, but A can't start one to B. But what if
+A needs to connect to B? We can do revrse port forwarding: B runs netpipe
+o2o mode, while A will run netpipe i2i mode. See the \fBEXAMPLES\fR...
+
+.SH SYNOPSIS
+netpipe mode parameters [options] ...
+
+.SH MODES
+.TP
+.B
+i2i
+Incoming-to-Incoming connection, parameters are:
+.br
+\fBListenIP1:SourcePort1:ListenIP2:SourcePort2\fR
+.TP
+.B
+o2o
+Outgoing-to-Outgoing connection, parameters:
+.br
+\fBDestinationHost1:DestinationPort1:DHost2:DPort2\fR
+.TP
+.B
+i2o
+Incoming-to-Outgoing connection (a.k.a. PortForward), parameters are:
+.br
+\fBListenIP:SourcePort:DestinationHost:DestinationPort\fR
+
+.SH OPTIONS
+.TP
+.B
+-l/--log file
+Log into file
+.TP
+.B
+-f/--fork
+Do not fork into background
+.TP
+.B
+-h/--help
+Show help text
+.TP
+.B
+-v/--version
+Display version information
+
+.SH EXAMPLES
+The following example will do a simple reverse port forward:
+.br
+netpipe i2i 0:2300:192.168.1.1:2301 -l whatever
+.br
+netpipe o2o 10.0.0.1:2300:127.0.0.1:23 -f
+
+.SH SECURITY
+Netpipe is not capable of encryption.
+Please use SSH, if you \fIneed\fR security.
+
+.SH TODO
+I plan to make netpipe capable of hiding a TCP thread under an
+other thread, making some kind of Steganography - Forwarder.
+Another thing i would like to iplement is encryption, possibly
+using SSL.
+
+.SH EXIT STATUS
+EXIT_SUCCESS (0) when everything done as wanted
+.br
+EXIT_FAILURE (1) after any error(s)
+
+.SH FILES
+/usr/local/bin/netpipe
+.br
+/usr/local/man/man1/netpipe.1
+
+.SH AUTHOR
+Scythe (scythe@rudas.hu)
+
+.SH SEE ALSO
+nc(1), stone

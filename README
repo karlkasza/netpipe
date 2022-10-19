@@ -1,0 +1,10 @@
+
+ Netpipe - Port Forwarder/Backwarder, version 0.1
+ Inspired by netcat, stone and the corporate firewall...
+
+ Written by Scythe (scythe@rudas.hu)
+
+ Installation:
+ If you are reading this, than you could probably untar the file.
+ So just issue 'make install', that will compile, strip and install
+ the required files. For mor info see 'man netpipe' after that.
