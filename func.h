@@ -1,8 +1,8 @@
 //func.h
 //by Scythe
 
-char *logfn;
-short uselog, opt_fork;
+extern char *logfn;
+extern short uselog, opt_fork;
 
 void do_log(char *templ_str, ...);
 

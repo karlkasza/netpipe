@@ -27,7 +27,7 @@ void tcptrf(int fsock, int ssock) {
 	do_log("starting transfer");
 	do {
 		if (fsock > ssock) numfds = fsock;
-		else numfds = ssock;
+		else numfds = ssock;
 		numfds++;
 
 		FD_ZERO(&readfds);
@@ -39,7 +39,7 @@ void tcptrf(int fsock, int ssock) {
 			s_read = ssock;
 			s_write = fsock;
 		}
-		else {
+		else {
 			if (FD_ISSET(fsock, &readfds)) {
 				s_read = fsock;
 				s_write = ssock;
@@ -53,7 +53,7 @@ void tcptrf(int fsock, int ssock) {
 		}
 		recvd = recv(s_read, msg, MAXMSG, 0);
 		if (recvd > 0) {
-			sent = send(s_write, msg, recvd, 0);
+			sent = send(s_write, msg, recvd, 0);
 		}
 	} while ((recvd > 0) && (sent > 0));
 
@@ -141,7 +141,7 @@ int tcpin(char *listenip, unsigned short sport) {
 	
 	if (uselog) {
 		char ip[16] = "unknown";
-		size_t size = sizeof(caddr);
+		socklen_t size = sizeof(caddr);
 
 		if (getpeername(csock, (struct sockaddr *) &caddr, &size))
 			do_log("getpeername error: %s", strerror(errno));
@@ -229,7 +229,7 @@ void tcpfwd(char *listenip, unsigned short sport, char *chost,
 		if (pid == 0) {
 			int fsock = 0;
 			char ip[16] = "unknown";
-			size_t size = sizeof(caddr);
+			socklen_t size = sizeof(caddr);
 
 			//Do the usual
 			if (getpeername(csock, (struct sockaddr *) &caddr, &size))

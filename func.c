@@ -29,7 +29,7 @@ void do_log(char *templ_str, ...) {
 		}
 	} while (finder!=NULL);
 
-	va_start(msgs, count);
+	va_start(msgs, templ_str);
 
 	if (uselog) {
 		time_t curtime = time(0);

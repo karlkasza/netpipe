@@ -10,6 +10,9 @@
 #include "func.h"
 #include "tcp.h"
 
+char *logfn;
+short uselog, opt_fork;
+
 int main(int argc, char *argv[]) {
 	int sock1, sock2;
 	char *host1, *host2;
@@ -109,7 +112,7 @@ int main(int argc, char *argv[]) {
 	//Parsing additional options
 	{
 	int i, done;
-	
+
 	//These two are defined in func.h header, so they don't have defaults
 	uselog = 0;
 	opt_fork = 0;
