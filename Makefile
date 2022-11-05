@@ -2,7 +2,7 @@
 #by Scythe
 
 CC = gcc
-CFLAGS = -O2 -Wall
+CFLAGS = -O2 -Wall -fanalyzer
 OBJS = func.o tcp.o
 BIN = netpipe
 MAN = netpipe.1
